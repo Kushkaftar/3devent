@@ -1,29 +1,15 @@
 'use strict';
 
-const app = document.getElementById("app");
+// get element ...
+const nav_app = document.getElementById("nav_app"),
+    checkbox_app = document.getElementById("checkbox_app"),
+    input_app = document.getElementById("input_app"),
+    coll_app = document.getElementById("coll_app"),
+    card_app = document.getElementById("card_app");
 
-//  ...
-const menu = document.createElement("nav"),
-    checkDiv = document.createElement("div"),
-    inputDiv = document.createElement("div"),
-    cardDiv = document.createElement("div");
-    //form = document.createElement("form"),
-
-
+// array ...
 let inputArr = [],
     cardsArr =[];
-
-// add class ...
-
-checkDiv.classList.add("check");
-inputDiv.classList.add("input");
-cardDiv.classList.add("card");
-
-// struct ...
-
-app.insertAdjacentElement("beforeend", checkDiv);
-app.insertAdjacentElement("beforeend", inputDiv);
-app.insertAdjacentElement("beforeend", cardDiv);
 
 // checkBlock ...
 
@@ -62,16 +48,8 @@ const checkBlock = () => {
                 inputBlock();
                 //console.log(target.value);
             }
-
-
         }
-
-        // if (target.getAttribute("type") === "text") {
-        //     console.log(target.value);
-        // }
     });
-
-    //console.log(checkDiv);  && target.checked === true
 };
 
 checkBlock();
@@ -97,9 +75,6 @@ const inputBlock = () => {
         }
     });
 
-    // let elems = document.querySelectorAll('.dropdown-trigger'),
-    //     instances = M.Dropdown.init(elems, options);
-    // instances(elems);
 
     inputArr.forEach(elem => {
         div.insertAdjacentHTML("beforeend",`
@@ -117,9 +92,7 @@ const inputBlock = () => {
     const formWorker = (elem) => {
         console.log(elem);
         console.log(elem.getAttribute("id"));
-    //     list.textContent = '';
-    //
-    //     if (input.value !== '')
+
     };
 
     form.addEventListener("input", (evt) => {
@@ -135,6 +108,8 @@ const inputBlock = () => {
 // cards ...
 
 const cards = (arr) => {
+
+    const cardApp = document.getElementById("card_app");
     const div = document.createElement("div");
     div.classList.add("row");
 
@@ -168,38 +143,30 @@ const cards = (arr) => {
         `);
     });
 
-    cardDiv.insertAdjacentElement("beforeend", div);
+    cardApp.insertAdjacentElement("beforeend", div);
 };
 
 //cards(cardsArr);
 
-menu.insertAdjacentHTML("afterbegin",`
-                            <div class="nav-wrapper">
-                                <form>
-                                    <div class="input-field">
-                                        <input id="search" type="search" required>
-                                            <label class="label-icon" for="search">
-                                                <i class="material-icons">search</i>
-                                            </label>
-                                        <i class="material-icons">close</i>
-                                    </div>
-                                </form>
-                            </div>`);
+// menu.insertAdjacentHTML("afterbegin",`
+//                             <div class="nav-wrapper">
+//                                 <form>
+//                                     <div class="input-field">
+//                                         <input id="search" type="search" required>
+//                                             <label class="label-icon" for="search">
+//                                                 <i class="material-icons">search</i>
+//                                             </label>
+//                                         <i class="material-icons">close</i>
+//                                     </div>
+//                                 </form>
+//                             </div>`);
+//
+// app.insertAdjacentElement("afterbegin", menu);
 
-app.insertAdjacentElement("afterbegin", menu);
+// const search = document.getElementById("search");
+// //console.log(search);
+// search.addEventListener("input", () => console.log(search.value));
 
-const search = document.getElementById("search");
-//console.log(search);
-search.addEventListener("input", () => console.log(search.value));
-
-
-// return elem
-
-const returnElem = (nameElem, classElem) => {
-    const elem = document.createElement(nameElem);
-    elem.classList(classElem);
-    return elem;
-};
 
 // collections ...
 
