@@ -1,11 +1,11 @@
 'use strict';
 
 // get element ...
-const nav_app = document.getElementById("nav_app"),
-    checkbox_app = document.getElementById("checkbox_app"),
-    input_app = document.getElementById("input_app"),
-    coll_app = document.getElementById("coll_app"),
-    card_app = document.getElementById("card_app");
+const navApp = document.getElementById("nav_app"),
+    checkboxApp = document.getElementById("checkbox_app"),
+    inputApp = document.getElementById("input_app"),
+    collApp = document.getElementById("coll_app"),
+    cardApp = document.getElementById("card_app");
 
 // array ...
 let inputArr = [],
@@ -16,11 +16,9 @@ let inputArr = [],
 const checkBlock = () => {
     const checkArr = ["heroes", "actors", "movies", "status"];
 
-    const divCheck = document.getElementById("checkbox_app");
-
     const form = document.createElement("form"),
         div = document.createElement("div");
-    divCheck.classList.add("row");
+    checkboxApp.classList.add("row");
 
     checkArr.forEach(elem => {
         div.insertAdjacentHTML("beforeend",`
@@ -33,7 +31,7 @@ const checkBlock = () => {
     })
 
     form.insertAdjacentElement("beforeend", div);
-    divCheck.insertAdjacentElement("beforeend", form);
+    checkboxApp.insertAdjacentElement("beforeend", form);
 
     form.addEventListener("change", evt => {
         const target = evt.target;
@@ -54,19 +52,19 @@ const checkBlock = () => {
 
 checkBlock();
 
-
-
 // inputBlock ...
 
 const inputBlock = () => {
 
-    const inputApp = document.getElementById("input_app");
     const div = document.createElement("div");
 
     div.classList.add("row");
     const form = document.createElement("form");
 
     const delInput = form.querySelectorAll("input");
+
+    //console.log(checkboxApp.firstChild.tagName );
+    if (inputApp.firstChild) inputApp.firstChild.remove();
 
     delInput.forEach(elem => {
         if (elem.getAttribute("type") !== "checkbox") {
@@ -109,7 +107,6 @@ const inputBlock = () => {
 
 const cards = (arr) => {
 
-    const cardApp = document.getElementById("card_app");
     const div = document.createElement("div");
     div.classList.add("row");
 
