@@ -61,18 +61,7 @@ const inputBlock = () => {
     div.classList.add("row");
     const form = document.createElement("form");
 
-    const delInput = form.querySelectorAll("input");
-
-    //console.log(checkboxApp.firstChild.tagName );
     if (inputApp.firstChild) inputApp.firstChild.remove();
-
-    delInput.forEach(elem => {
-        if (elem.getAttribute("type") !== "checkbox") {
-            elem.parentElement.remove();
-            //console.log(elem.parentElement);
-        }
-    });
-
 
     inputArr.forEach(elem => {
         div.insertAdjacentHTML("beforeend",`
@@ -86,21 +75,42 @@ const inputBlock = () => {
     form.insertAdjacentElement("beforeend", div);
     inputApp.insertAdjacentElement("beforeend", form);
 
+    form.addEventListener("input", (evt) => filterArr(evt));
+};
 
-    const formWorker = (elem) => {
-        console.log(elem);
-        console.log(elem.getAttribute("id"));
+// filter ...
+
+const filterArr = (evt) => {
+    const target = evt.target;
+
+    const  filter = (attr, value) => {
+        let arr = cardsArr.filter(elm => {
+            //console.log(elm[attr]);
+            if (elm[attr].toLocaleLowerCase().indexOf(value)  !== -1) {
+                //console.log(elm[attr]);
+                return elm;
+            }
+        })
+        console.log(arr);
+        coll(arr);
 
     };
 
-    form.addEventListener("input", (evt) => {
-        const target = evt.target;
-
-        if (target.getAttribute("type") === "text") {
-
-            formWorker(target);
-        }
-    });
+    switch (target.getAttribute("id")) {
+        case "heroes":
+            filter("name",target.value)
+            //console.log(target.getAttribute("id"), target.value);
+            break;
+        case "actors":
+            console.log(target.getAttribute("id"), target.value);
+            break;
+        case "movies":
+            console.log(target.getAttribute("id"), target.value);
+            break;
+        case "status":
+            console.log(target.getAttribute("id"), target.value);
+            break;
+    }
 };
 
 // cards ...
@@ -168,10 +178,10 @@ const cards = (arr) => {
 // collections ...
 
 const coll = (arr) => {
-    const coll = document.getElementById("coll_app"),
-        ul = document.createElement("ul");
+    if (collApp.firstChild) collApp.firstChild.remove();
+    const ul = document.createElement("ul");
 
-    coll.classList.add("row");
+    collApp.classList.add("row");
     ul.classList.add("collection");
 
     arr.forEach(elem => {
@@ -186,7 +196,7 @@ const coll = (arr) => {
             </li>
             `)
     });
-    coll.insertAdjacentElement("beforeend", ul);
+    collApp.insertAdjacentElement("beforeend", ul);
 
 };
 
